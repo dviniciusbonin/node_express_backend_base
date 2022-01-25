@@ -1,0 +1,22 @@
+version: "3.1"
+services:
+  dev:
+    container_name: backend-dev
+    build:
+      context: .
+      target: development
+    ports: 
+      - ${PORT}:${PORT}
+    volumes:
+      - .:/home/app
+      - /home/app/node_modules
+  
+  prod:
+    container_name: backend-prod
+    build:
+      context: .
+      target: production
+    env_file: 
+      - .env
+    ports:
+      - ${PORT}:${PORT}
